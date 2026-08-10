@@ -1,0 +1,19 @@
+{
+  "name": "C Crashkurs",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "C_Cpp.default.cStandard": "c23",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}
