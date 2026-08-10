@@ -46,7 +46,9 @@ crashcourse/
 ```json
 {
   "name": "C Crashkurs",
-  "build": { "dockerfile": "Dockerfile" },
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
