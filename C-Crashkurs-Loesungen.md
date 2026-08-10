@@ -3,7 +3,7 @@
 Diese Lösungen sind Referenzlösungen. Andere korrekte, verständliche und warnungsfreie Lösungen sind ebenso gültig. Jede Datei wird beispielsweise so übersetzt:
 
 ```bash
-gcc -std=c17 -Wall -Wextra -Wpedantic -Wconversion -g datei.c -o programm
+gcc -std=c23 -Wall -Wextra -Wpedantic -Wconversion -g datei.c -o programm
 ```
 
 ## Lösung 1 - Umgebung und Hello World
