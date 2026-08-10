@@ -2,7 +2,7 @@
 
 ## Ziel und Rahmen
 
-Dieser Kurs führt schrittweise in die prozedurale Programmierung mit C ein. Gearbeitet wird mit Visual Studio Code in einem Devcontainer. Alle Lernenden erhalten dadurch dieselbe Linux-Umgebung mit Compiler, Debugger und Formatierungswerkzeugen.
+Dieser Kurs führt schrittweise in die prozedurale Programmierung mit C ein. Gearbeitet wird mit Visual Studio Code in einer konsistenten Linux-Umgebung mit Compiler, Debugger und Formatierungswerkzeugen.
 
 Der Kurs ist für erste Programmiererfahrungen ausgelegt. Die Kapitel bauen aufeinander auf. Zu jedem Thema gehören kurze Theorie, ein Beispiel und Praxisaufgaben.
 
@@ -22,18 +22,15 @@ Nach dem Kurs kannst du:
 ### 1.1 Benötigte Werkzeuge
 
 - Visual Studio Code
-- Docker Desktop oder eine kompatible Container-Laufzeit
-- VS-Code-Erweiterung **Dev Containers**
+- Erweiterung **C/C++** für VS Code
+- GCC und GDB sind bereits in der verwendeten Umgebung vorhanden
 
 ### 1.2 Projektstruktur
 
-Lege folgende Struktur an:
+Im Projekt ist bereits ein einfacher Aufbau vorbereitet. Die wichtigsten Dateien sind:
 
 ```text
 crashcourse/
-├── .devcontainer/
-│   ├── devcontainer.json
-│   └── Dockerfile
 ├── .vscode/
 │   ├── launch.json
 │   └── tasks.json
@@ -41,88 +38,9 @@ crashcourse/
     └── hello_world.c
 ```
 
-`.devcontainer/devcontainer.json`:
+Die Datei `src/hello_world.c` ist schon angelegt. Sie enthält einen ersten C-Programmentwurf, den du in dieser Übung anpassen wirst.
 
-```json
-{
-  "name": "C Crashkurs",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-vscode.cpptools",
-        "ms-vscode.makefile-tools"
-      ],
-      "settings": {
-        "C_Cpp.default.cStandard": "c23",
-        "editor.formatOnSave": true
-      }
-    }
-  },
-  "remoteUser": "vscode"
-}
-```
-
-`.devcontainer/Dockerfile`:
-
-```dockerfile
-FROM mcr.microsoft.com/devcontainers/cpp:debian13
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends clang-format valgrind \
-    && rm -rf /var/lib/apt/lists/*
-```
-
-`.vscode/tasks.json` übersetzt die aktuell geöffnete C-Datei:
-
-```json
-{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "C: aktuelle Datei bauen",
-      "type": "shell",
-      "command": "gcc",
-      "args": [
-        "-std=c23", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-g",
-        "${file}", "-o", "${fileDirname}/${fileBasenameNoExtension}"
-      ],
-      "options": { "cwd": "${fileDirname}" },
-      "problemMatcher": ["$gcc"],
-      "group": { "kind": "build", "isDefault": true }
-    }
-  ]
-}
-```
-
-`.vscode/launch.json` startet die aktuell geöffnete Datei im Debugger:
-
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "C: aktuelle Datei debuggen",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "cwd": "${fileDirname}",
-      "MIMode": "gdb",
-      "preLaunchTask": "C: aktuelle Datei bauen",
-      "externalConsole": false
-    }
-  ]
-}
-```
-
-Öffne den Projektordner in VS Code und wähle **Dev Containers: Reopen in Container**. Prüfe danach im Terminal:
-
-```bash
-gcc --version
-gdb --version
-```
+Die Dateien in `.vscode` helfen dir dabei, die aktuelle Datei zu bauen und zu starten. Du musst sie nicht neu schreiben, sondern nur verstehen, was bereits vorhanden ist.
 
 ### 1.3 Übersetzen und starten
 
@@ -143,7 +61,16 @@ Warnungen werden im Kurs wie Fehler behandelt: Ursache verstehen und beheben.
 
 ### Praxis 1 - Umgebung und Hello World
 
-Erstelle `src/hello_world.c`. Das Programm soll exakt die Zeile `Hello, World!` ausgeben. Übersetze es mit allen oben genannten Warnoptionen und starte es.
+Was bereits da ist:
+
+- In `src/hello_world.c` liegt ein einfaches C-Programm vor.
+- Es enthält bereits `#include <stdio.h>`, `main` und einen ersten `printf`-Aufruf.
+
+Deine Aufgabe:
+
+- Öffne die Datei und lese den vorhandenen Code genau.
+- Passe den Text so an, dass das Programm exakt die Zeile `Hello, World!` ausgibt.
+- Übersetze es mit allen oben genannten Warnoptionen und starte es.
 
 Akzeptanzkriterien:
 
