@@ -30,7 +30,7 @@ Nach dem Kurs kannst du:
 Lege folgende Struktur an:
 
 ```text
-c-crashkurs/
+crashcourse/
 ├── .devcontainer/
 │   ├── devcontainer.json
 │   └── Dockerfile
