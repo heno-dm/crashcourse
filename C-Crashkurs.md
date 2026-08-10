@@ -54,7 +54,7 @@ c-crashkurs/
         "ms-vscode.makefile-tools"
       ],
       "settings": {
-        "C_Cpp.default.cStandard": "c17",
+        "C_Cpp.default.cStandard": "c23",
         "editor.formatOnSave": true
       }
     }
@@ -66,7 +66,7 @@ c-crashkurs/
 `.devcontainer/Dockerfile`:
 
 ```dockerfile
-FROM mcr.microsoft.com/devcontainers/cpp:1-debian-12
+FROM mcr.microsoft.com/devcontainers/cpp:debian13
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends clang-format valgrind \
@@ -84,7 +84,7 @@ RUN apt-get update \
       "type": "shell",
       "command": "gcc",
       "args": [
-        "-std=c17", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-g",
+        "-std=c23", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-g",
         "${file}", "-o", "${fileDirname}/${fileBasenameNoExtension}"
       ],
       "options": { "cwd": "${fileDirname}" },
@@ -127,11 +127,11 @@ gdb --version
 Ein C-Quelltext wird vom Compiler in ein ausführbares Programm übersetzt:
 
 ```bash
-gcc -std=c17 -Wall -Wextra -Wpedantic -Wconversion -g src/hello_world.c -o hello_world
+gcc -std=c23 -Wall -Wextra -Wpedantic -Wconversion -g src/hello_world.c -o hello_world
 ./hello_world
 ```
 
-- `-std=c17` wählt den Sprachstandard C17.
+- `-std=c23` wählt den aktuellen ISO-Sprachstandard C23.
 - `-Wall -Wextra -Wpedantic` aktiviert wichtige Warnungen.
 - `-Wconversion` warnt vor riskanten Typumwandlungen.
 - `-g` fügt Informationen für den Debugger hinzu.
@@ -460,7 +460,7 @@ Ein guter Ablauf bei Fehlern:
 Nützliche Befehle:
 
 ```bash
-gcc -std=c17 -Wall -Wextra -Wpedantic -Wconversion -g -fsanitize=address,undefined src/program.c -o program
+gcc -std=c23 -Wall -Wextra -Wpedantic -Wconversion -g -fsanitize=address,undefined src/program.c -o program
 ./program
 valgrind --leak-check=full ./program
 ```
